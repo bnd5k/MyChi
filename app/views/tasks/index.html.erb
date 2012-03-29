@@ -1,0 +1,12 @@
+<h1>All Tasks</h1>
+
+<%= will_paginate %>
+
+<ul>
+  <% @tasks.each do |task| %>
+ 	 <%= render task  %>
+  <% end %>
+</ul>
+<%= will_paginate %>
+
+<%= link_to( "Create New Task", '/tasks/new') %>

@@ -1,0 +1,21 @@
+<h1>Show Hunt</h1>
+
+<table>
+  <tr>
+    <td class="main">
+      <h1>
+        <%= @hunt.name %>
+      </h1>
+	
+		<%f.select :id, :group_id, :name k%>	
+		<ul>
+		  <% @tasks.each do |task| %>
+		 	 <%= render task  %>
+		  <% end %>
+		</ul>
+
+
+    </td>
+
+  </tr>
+</table>

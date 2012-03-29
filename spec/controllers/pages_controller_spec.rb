@@ -4,7 +4,7 @@ describe PagesController do
   render_views
   
   before(:each) do
-    @base_title = "framework "
+    @base_title = "MyChi "
   end
   
   describe "GET 'home'" do

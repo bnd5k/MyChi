@@ -16,17 +16,16 @@ describe UsersController do
     describe "for signed-in users" do
 
       before(:each) do
-        @user = test_sign_in(Factory(:user))
-        second = Factory(:user, :name => "Bob", :email => "another@example.com")
-        third  = Factory(:user, :name => "Ben", :email => "another@example.net")
+        @user = test_sign_in(FactoryGirl.create(:user))
+        second = FactoryGirl.create(:user, :name => "Bob", :email => "another@example.com")
+        third  = FactoryGirl.create(:user, :name => "Ben", :email => "another@example.net")
         
         30.times do
-          Factory(:user, :name => Factory.next(:name),
-                         :email => Factory.next(:email))
-        #@users = [@user, second, third]
-        end
-      end
-
+          FactoryGirl.create(:user) 
+       end
+     end
+      
+      
       it "should be successful" do
         get :index
         response.should be_success
@@ -61,7 +60,7 @@ describe UsersController do
   describe "GET 'show'" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
     end
 
     it "should be successful" do
@@ -103,8 +102,6 @@ describe UsersController do
     it "should have the right title" do
       get 'new'
       response.should have_selector("title", :content => "Sign up")
-      #response.should have_selector("title", :content => @base_title + "| Sign up")
-      
     end
  
     it "should have a name field" do
@@ -190,7 +187,7 @@ describe UsersController do
   describe "GET 'edit'" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
       test_sign_in(@user)
     end
 
@@ -215,7 +212,7 @@ describe UsersController do
   describe "PUT 'update'" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
       test_sign_in(@user)
     end
 
@@ -266,7 +263,7 @@ describe UsersController do
   describe "authentication of edit/update pages" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
     end
 
     describe "for non-signed-in users" do
@@ -286,12 +283,12 @@ describe UsersController do
     describe "for signed-in users" do
 
       before(:each) do
-        wrong_user = Factory(:user, :email => "user@example.net")
+        wrong_user = FactoryGirl.create(:user, :email => "user@example.net")
         test_sign_in(wrong_user)
         @users = [@user, second, third]
         
         30.times do
-          @users << Factory(:user, :name => Factory.next(:name),
+          @users << FactoryGirl.create(:user, :name => Factory.next(:name),
                                    :email => Factory.next(:email))
         end
 
@@ -331,7 +328,7 @@ describe UsersController do
   describe "DELETE 'destroy'" do
 
     before(:each) do
-      @user = Factory(:user)
+      @user = FactoryGirl.create(:user)
     end
 
     describe "as a non-signed-in user" do
@@ -348,7 +345,7 @@ describe UsersController do
         response.should redirect_to(root_path)
       end
       
-      it "should not show link to deleFte user" do
+      it "should not show link to delete user" do
         test_sign_in(@user)
         gravatar_url = "http://gravatar.com/emails"
         response.should_not have_selector("a", :href => "delete",
@@ -359,7 +356,7 @@ describe UsersController do
     describe "as an admin user" do
 
       before(:each) do
-        admin = Factory(:user, :email => "admin@example.com", :admin => true)
+        admin = FactoryGirl.create(:user, :email => "admin@example.com", :admin => true)
         test_sign_in(admin)
       end
 

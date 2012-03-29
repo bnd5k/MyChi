@@ -1,14 +1,25 @@
-Factory.define :user do |user|
-  user.name                  "Michael Hartl"
-  user.email                 "mhartl@example.com"
-  user.password              "foobar"
-  user.password_confirmation "foobar"
-end
+    FactoryGirl.define do
+      factory :user do
+        sequence(:name)  { |n| "Person #{n}" }
+        sequence(:email) { |n| "person_#{n}@example.com"}   
+        password "foobar"
+        password_confirmation "foobar"
+    
+        factory :admin do
+          admin true
+        end
+      end
+      
+      factory :hunt do
+        sequence(:name)  { |n| "Hunt #{n}" }        
+      end
+      
+      factory :task do
+        sequence(:name)  { |n| "Task #{n}" } 
+        #sequence(:points)  {n}         
+      end
+           
+      
+    end    
 
-Factory.sequence :name do |n|
-  "Person #{n}"
-end
 
-Factory.sequence :email do |n|
-  "person-#{n}@example.com"
-end

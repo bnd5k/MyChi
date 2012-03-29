@@ -1,0 +1,9 @@
+	<li>
+	  <%= link_to hunt.name, hunt %>
+	  <% if current_user && current_user.admin? %>
+	  	| <%= link_to "edit", edit_hunt_path(hunt) %> 	
+	   	| <%= link_to "delete", hunt_path(hunt), :method => :delete, :confirm => "You sure?",
+	                                :title => "Delete #{hunt.name}" %>
+
+	  <% end %>
+	</li>

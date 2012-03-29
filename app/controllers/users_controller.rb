@@ -2,7 +2,18 @@ class UsersController < ApplicationController
   before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
   before_filter :correct_user, :only => [:edit, :update]
   before_filter :admin_user,   :only => :destroy
-   
+
+
+  def index
+    @title = "All users"
+    @users = User.paginate(:page => params[:page])
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @title = @user.name
+  end
+     
   def new
     #if user = admin then
     # redirect_to(root_path) 
@@ -30,17 +41,6 @@ class UsersController < ApplicationController
       
     end
   end
-  
-def index
-    @title = "All users"
-    @users = User.paginate(:page => params[:page])
-  end
-
-  def show
-    @user = User.find(params[:id])
-    @title = @user.name
-  end
-  
 
  
    def edit

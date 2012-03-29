@@ -12,7 +12,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: framework_development
+  database: MyChi_development
   pool: 5
   username: honcho77
   password: GinTonic88
@@ -27,7 +27,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: framework_development
+  database: MyChi_development
   pool: 5
   username: honcho77
   password: GinTonic88
@@ -38,7 +38,7 @@ production:
   adapter: postgresql
   encoding: utf8
   reconnect: false
-  database: framework_production
+  database: MyChi_production
   pool: 5
   username: root
   password:
@@ -48,7 +48,7 @@ production:
 #  adapter: mysql2
 #  encoding: utf8
 #  reconnect: false
-#  database: framework_production
+#  database: MyChi_production
 #  pool: 5
 #  username: root
 #  password:

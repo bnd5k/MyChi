@@ -1,0 +1,9 @@
+<h1>Edit Hunt</h1>
+
+<%= form_for(@hunt) do |f| %>
+
+  <%= render 'fields', :f => f %>
+	<div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+	<% end %>

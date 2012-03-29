@@ -1,0 +1,2 @@
+module HuntHelper
+end

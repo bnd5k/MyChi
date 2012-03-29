@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Framework::Application.load_tasks
+MyChi::Application.load_tasks

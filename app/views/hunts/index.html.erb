@@ -1,0 +1,13 @@
+<h1>All Hunts</h1>
+
+<%= will_paginate %>
+
+<ul>
+  <% @hunts.each do |hunt| %>
+ 	 <%= render hunt  %>
+  <% end %>
+</ul>
+<%= will_paginate %>
+
+<%= link_to( "Create New Hunt", '/hunts/new') %>
+

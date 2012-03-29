@@ -1,0 +1,9 @@
+<h1>Edit task</h1>
+
+<%= form_for(@task) do |f| %>
+
+  <%= render 'fields', :f => f %>
+	<div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+	<% end %>
