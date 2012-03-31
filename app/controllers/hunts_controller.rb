@@ -16,7 +16,10 @@ class HuntsController < ApplicationController
       redirect_to signin_path
     else
       @hunt = Hunt.new
-      @title = "New Hunt"  
+      @title = "New Hunt"
+      3.times do
+        hunt =  @hunt.tasks.build   
+      end
     end
   end
 
