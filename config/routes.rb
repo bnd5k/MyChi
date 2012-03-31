@@ -1,6 +1,6 @@
 MyChi::Application.routes.draw do
 
-  resources :users, :hunts, :tasks
+  resources :users, :hunts, :tasks, :hunt_tasks
   resources :sessions, :only => [:new, :create, :destroy]
 
   match '/hunts', :to => 'hunts#index'

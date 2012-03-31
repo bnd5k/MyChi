@@ -6,16 +6,11 @@
       <h1>
         <%= @hunt.name %>
       </h1>
-	
-	
-		<ul>
+		<ul>		
 		  <% @tasks.each do |task| %>
 		 	 <%= render task  %>
 		  <% end %>
 		</ul>
-
-
     </td>
-
   </tr>
 </table>

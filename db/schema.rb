@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120328121219) do
+ActiveRecord::Schema.define(:version => 20120331170423) do
+
+  create_table "hunt_tasks", :force => true do |t|
+    t.integer  "hunt_id"
+    t.integer  "task_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hunt_tasks", ["hunt_id", "task_id"], :name => "index_hunt_tasks_on_hunt_id_and_task_id", :unique => true
+  add_index "hunt_tasks", ["hunt_id"], :name => "index_hunt_tasks_on_hunt_id"
+  add_index "hunt_tasks", ["task_id"], :name => "index_hunt_tasks_on_task_id"
 
   create_table "hunts", :force => true do |t|
     t.string   "name"

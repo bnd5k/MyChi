@@ -7,8 +7,8 @@ class HuntsController < ApplicationController
 
   def show
     @hunt = Hunt.find(params[:id])
-    @title = @hunt.name    
-    @tasks = Task.paginate(:page => params[:page])
+    @title = @hunt.name 
+    @tasks = @hunt.tasks.paginate(:page => params[:page])
   end
 
   def new
