@@ -2,7 +2,7 @@ class HuntsController < ApplicationController
   # GET /hunts
   # GET /hunts.json
   def index
-    @hunts = Hunt.paginate(:page => params[:page])
+    @hunts = Hunt.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,7 +27,7 @@ class HuntsController < ApplicationController
     @hunt = Hunt.new
     3.times do |i|
         t = @hunt.hunt_tasks.build
-        #t.name = "task-#{i}"
+        t.name = "task-#{i}"
     end
 
     respond_to do |format|

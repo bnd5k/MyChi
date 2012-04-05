@@ -1,35 +1,8 @@
 	<%f.select :id, :group_id, :name %>	
 	
-Need a way to say, "If has is ass"
 
+<td> <%= f.fields_for :tasks do |builder| %> </td>
+<td> <%= render "tasks/fields.html.erb", :f => builder %></td>
+<% end %>
 
-	<%= f.select :tasks, :task_id, :name %>	
-    <%= render "task_fields", :f => builder %>
-
-
-		ActiveRecord::StatementInvalid in Hunts#show
-		Showing /****/views/hunts/show.html.erb where line #13 raised:
-		Mysql2::Error: Table '***_development.hunts_tasks' doesn't exist: SELECT  `tasks`.* FROM `tasks` INNER JOIN `hunts_tasks` ON `tasks`.`id` = `hunts_tasks`.`task_id` WHERE `hunts_tasks`.`hunt_id` = 100 LIMIT 30 OFFSET 0
-
-
-   #@hunttasks = @hunt.tasks.paginate(:page => params[:page]) 
-     #@tasks = Task.paginate(:page => params[:page])
-   
-		
-		NameError in HuntsController#show
-		uninitialized constant Hunt::Hunttask
-		
-	class Hunt < ActiveRecord::Base
-	  has_many :hunttasks
-	  has_many :tasks, :through => :hunttasks
-	end
-	
-	class HuntTask < ActiveRecord::Base
-	
-	  belongs_to :hunt, :class_name => "Hunt"
-	  belongs_to :task, :class_name => "Task"
-	
-	class Task < ActiveRecord::Base
-	  has_many :hunttasks
-	  has_many :hunts, :through => :hunttasks
-	end
+<%= render "tasks/fields.html.erb" %>	
