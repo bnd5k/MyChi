@@ -5,6 +5,7 @@
 <td> <%= render "tasks/fields.html.erb", :f => builder %></td>
 <% end %>
 
+<<<<<<< HEAD
 
 
 
@@ -31,3 +32,6 @@
 <%= f.label :name, "Task" %>
   <%= f.text_field :name %>
 </
+=======
+<%= render "tasks/fields.html.erb" %>	
+>>>>>>> 02795a9799047990236848b6d3e3efbfeeb1b01b
