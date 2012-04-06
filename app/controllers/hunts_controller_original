@@ -8,7 +8,7 @@ class HuntsController < ApplicationController
   def show
     @hunt = Hunt.find(params[:id])
     @title = @hunt.name 
-    @tasks = @hunt.hunt_tasks.paginate(:page => params[:page])
+    @tasks = @hunst.tasks.paginate(:page => params[:page])
   end
 
   def new
@@ -16,10 +16,16 @@ class HuntsController < ApplicationController
       redirect_to signin_path
     else
       @hunt = Hunt.new
-      @title = "New Hunt"    
-      3.times do 
-       task = @hunt.hunt_tasks.build
-                  
+      @title = "New Hunt"
+      3.times do |i|
+        t = @hunt.hunt_tasks.build
+        t.name = "task-#{i}"
+        #hunt =  @hunt.tasks.build   
+        #hunt = @hunt.hunt_tasks.build#.build_task
+        #hunttask = @hunt.hunt_tasks.build
+        #hunttask = @hunt.build_hunt_task
+        #hunttask = @hunt.hunt_tasks.build_hunt_task
+                
       end
     end
   end

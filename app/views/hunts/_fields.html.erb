@@ -1,11 +1,14 @@
 <%= render 'shared/error_messages', :object => f.object %>
 
 <div class="field">
-<td>  <%= f.label :name, "Hunt Name" %>  </td>
-<td>  <%= f.text_field :name %> </td>	
-</div>  
+  <%= f.label :name, "Hunt Name" %> 
+  <%= f.text_field :name %> 	
+   
+<li>   
+    <%= f.fields_for :hunt_tasks do |ff| %>
+    <%= ff.label :name, "Task" %>  
+    <%= ff.text_field :name %>
+	<% end %>	
+</li>
 
-<td> <%= f.fields_for :tasks do |builder| %> </td>
-<td> <%= render "tasks/fields.html.erb", :f => builder %></td>
-<% end %>
-
+</div>
