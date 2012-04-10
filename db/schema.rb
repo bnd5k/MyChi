@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331170423) do
+ActiveRecord::Schema.define(:version => 20120406192536) do
 
   create_table "hunt_tasks", :force => true do |t|
     t.integer  "hunt_id"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(:version => 20120331170423) do
 
   create_table "hunts", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invitations", :force => true do |t|
+    t.integer  "sender_id"
+    t.string   "recipient_email"
+    t.string   "token"
+    t.datetime "sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +54,8 @@ ActiveRecord::Schema.define(:version => 20120331170423) do
     t.string   "encrypted_password"
     t.string   "salt"
     t.boolean  "admin",              :default => false
+    t.integer  "invitation_id"
+    t.integer  "invitation_limit"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

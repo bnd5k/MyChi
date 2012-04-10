@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def home
+    p current_user
     @title = "Home"
   end
 

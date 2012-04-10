@@ -1,6 +1,7 @@
 class HuntsController < ApplicationController
 
   def index
+    p current_user
      @title = "All Hunts"
      @hunts = Hunt.paginate(:page => params[:page])
   end
@@ -8,7 +9,7 @@ class HuntsController < ApplicationController
   def show
     @hunt = Hunt.find(params[:id])
     @title = @hunt.name 
-    @tasks = @hunst.tasks.paginate(:page => params[:page])
+    @tasks = @hunt.tasks.paginate(:page => params[:page])
   end
 
   def new
@@ -17,9 +18,7 @@ class HuntsController < ApplicationController
     else
       @hunt = Hunt.new
       @title = "New Hunt"
-      3.times do |i|
-        t = @hunt.hunt_tasks.build      
-      end
+      3.times { @hunt.tasks.build }
     end
   end
   

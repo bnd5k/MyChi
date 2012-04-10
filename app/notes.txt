@@ -1,37 +1,42 @@
-	<%f.select :id, :group_id, :name %>	
-	
+Geoff questions:
 
-<td> <%= f.fields_for :tasks do |builder| %> </td>
-<td> <%= render "tasks/fields.html.erb", :f => builder %></td>
-<% end %>
-
-<<<<<<< HEAD
+WTF is up with nested attributes B.S.?
+WTF is up with sessions not persisting with email?
 
 
+from _header.html.erb
 
-<%= render 'shared/error_messages', :object => f.object %>
-
-<div class="field">
-<td>  <%= f.label :name, "Hunt Name" %>  </td>
-<td>  <%= f.text_field :name %> </td>	
-</div>  
-
-
-<div class="field">
-    <li> 
-   
-    <%= f.fields_for :hunt_tasks do |ff| %>
-    <%= ff.text_field :name %>
-	<% end %>
-	
-    </li>
-
-</div>  
-
-
-<%= f.label :name, "Task" %>
-  <%= f.text_field :name %>
-</
-=======
-<%= render "tasks/fields.html.erb" %>	
->>>>>>> 02795a9799047990236848b6d3e3efbfeeb1b01b
+	      <% if current_user.invitation_limit > 0  %>
+	      	<li><%= link_to "Invite Friends", new_invitation_path  %>
+		 	(<%= current_user.invitation_limit %> left) </li>
+      	  <% end %>	
+		      	  
+		
+		ArgumentError in InvitationsController#create
+		
+		wrong number of arguments (0 for 2)
+		Rails.root: /Users/bendowney/Sites/MyChi
+		
+		Application Trace | Framework Trace | Full Trace
+		app/mailers/user_mailer.rb:10:in `invitation'
+		app/controllers/invitations_controller.rb:16:in `create'
+		
+     # UserMailer.registration_confirmation(@user).deliver  (@invitation.token)
+     
+Started POST "/invitations" for 127.0.0.1 at 2012-04-08 12:06:16 -0500
+  Processing by InvitationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vd0oZDxUA7enfm/aO8AqlaLOo2L7uktGwPJUMdoWveA=", "invitation"=>{"recipient_email"=>"benjamin.n.downey@gmail.com"}, "commit"=>"Invite!"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` = 101 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'benjamin.n.downey@gmail.com' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  UPDATE `users` SET `invitation_limit` = 4, `salt` = '36b6eed5baf3d9ed6e234d8aa6004e7b034f7276a9ea06d0957b55b70732483b', `encrypted_password` = 'fd27cbec5361e4d6eeaab7135a0e7900b38e876d93943436f0facba732c33f9c', `updated_at` = '2012-04-08 17:06:16' WHERE `users`.`id` = 101
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `invitations` (`created_at`, `recipient_email`, `sender_id`, `sent_at`, `token`, `updated_at`) VALUES ('2012-04-08 17:06:16', 'benjamin.n.downey@gmail.com', 101, NULL, 'be35b5955f3c346cfa567434c180f435be50d6768bd51dba606ed20e7f69c541', '2012-04-08 17:06:16')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+DEPRECATION WARNING: subject(value) is deprecated. Please pass :subject as hash key to mail() instead. (called from invitation at /Users/bendowney/Sites/MyChi/app/mailers/user_mailer.rb:11)
+DEPRECATION WARNING: recipients(value) is deprecated. Please pass :to as hash key to mail() instead. (called from invitation at /Users/bendowney/Sites/MyChi/app/mailers/user_mailer.rb:12)
+DEPRECATION WARNING: body(value) is deprecated. Please pass :body as hash key to mail() instead. (called from invitation at /Users/bendowney/Sites/MyChi/app/mailers/user_mailer.rb:13)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.3ms)[0m  UPDATE `invitations` SET `sent_at` = '2012-04-08 17:06:16', `updated_at` = '2012-04-08 17:06:16' WHERE `invitations`.`id` = 1
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Rendered user_mailer/invitation.html.erb (0.5ms)
+DEPRECATION WARNING: charset() is deprecated and will be removed in future versions. (called from create at /Users/bendowney/Sites/MyChi/app/controllers/invitations_controller.rb:15)

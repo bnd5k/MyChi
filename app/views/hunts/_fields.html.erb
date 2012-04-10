@@ -2,9 +2,13 @@
 <div class="field">
   <%= f.label :name, "Hunt Name" %> 
   <%= f.text_field :name %> 	
+  
+    <%= label_tag :name, "Hunt Name" %> 
+  <%= text_field_tag "geoff[name]", "Geoff" %> 
+  
    
 <li>   
-    <%= f.fields_for :hunt_tasks do |ff| %>
+    <%= f.fields_for :tasks do |ff| %>
     <%= ff.label :name, "Task" %>  
     <%= ff.text_field :name %>
 	<% end %>	

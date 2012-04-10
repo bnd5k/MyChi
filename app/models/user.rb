@@ -1,18 +1,7 @@
-# == Schema Information
-#
-# Table name: users
-#
-#  id         :integer(4)      not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#
-
 class User < ActiveRecord::Base
   
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :invitation_token 
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -29,7 +18,20 @@ class User < ActiveRecord::Base
                        
   before_save :encrypt_password
 
+
+  #for invitations
+  #validates_presence_of :invitation_id, :message => 'is required'
+  validates_uniqueness_of :invitation_id
+  
+  has_many :sent_invitations, :class_name => 'Invitation', :foreign_key => 'sender_id'
+  belongs_to :invitation
+  
+  before_create :set_invitation_limit
+  
+ 
+
   # Return true if the user's password matches the submitted password.
+
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end
@@ -44,6 +46,15 @@ class User < ActiveRecord::Base
     user = find_by_id(id)
     (user && user.salt == cookie_salt) ? user : nil
   end
+
+  def invitation_token
+    invitation.token if invitation
+  end
+  
+  def invitation_token=(token)
+    self.invitation = Invitation.find_by_token(token)
+  end
+
   
   private
 
@@ -63,6 +74,10 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
+
+  def set_invitation_limit
+    self.invitation_limit = 5
+  end
     
 
 end

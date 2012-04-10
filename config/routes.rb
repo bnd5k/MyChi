@@ -1,11 +1,13 @@
 MyChi::Application.routes.draw do
 
-  resources :users, :hunts, :tasks, :hunt_tasks
+  resources :users, :hunts, :tasks, :hunt_tasks, :invitations
   resources :sessions, :only => [:new, :create, :destroy]
 
   match '/hunts', :to => 'hunts#index'
-      
-  match '/signup',  :to => 'users#new'
+  match '/signup/',  :to => 'users#new'
+  match '/invite/:invitation_token', :to => 'users#new'
+  
+  
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/contact', :to => 'pages#contact'
@@ -13,7 +15,6 @@ MyChi::Application.routes.draw do
   match '/help',    :to => 'pages#help'
             
   root :to => "pages#home"
-   
   match ':controller(/:action(/:id(.:format)))'
 
   # The priority is based upon order of creation:

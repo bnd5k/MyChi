@@ -1,6 +1,6 @@
 class HuntTask < ActiveRecord::Base
 
-  belongs_to :hunts
-  belongs_to :tasks
+  belongs_to :hunt
+  belongs_to :task
 
 end

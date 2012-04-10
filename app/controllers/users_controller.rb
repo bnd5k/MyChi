@@ -1,7 +1,7 @@
-class UsersController < ApplicationController
-  before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
-  before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => :destroy
+  class UsersController < ApplicationController
+    before_filter :authenticate, :only => [:index, :edit, :update, :destroy]
+    before_filter :correct_user, :only => [:edit, :update]
+    before_filter :admin_user,   :only => :destroy
 
 
   def index
@@ -15,13 +15,11 @@ class UsersController < ApplicationController
   end
      
   def new
-    #if user = admin then
-    # redirect_to(root_path) 
-    # flash something?
-    
-    if current_user?(nil)# = nil #.signed_in?
-      @user = User.new
+   if current_user?(nil)# = nil #.signed_in?
+      @user = User.new(:invitation_token => params[:invitation_token])
+      @user.email = @user.invitation.recipient_email if @user.invitation     
       @title = "Sign up"
+ 
     else
       flash[:error] = "Why sign up again?  You're already in!"
       redirect_to(root_path) 
