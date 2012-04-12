@@ -1,7 +1,7 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery
-  include SessionsHelper
- 
+    class ApplicationController < ActionController::Base
+      protect_from_forgery
+      include SessionsHelper
+     
 # before_filter :redirect_to_root_path
 
 #def redirect_to_root_path
@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 #end
 
 
- before_filter(:except => :splash) do
+ before_filter(:except => [:splash, :create]) do
    redirect_to root_path
  end
  
