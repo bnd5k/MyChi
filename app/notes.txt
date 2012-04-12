@@ -1,3 +1,9 @@
+    Routing Error
+    
+    undefined local variable or method `root_path' for ApplicationController:Class
+
+
+
 Geoff questions:
 
 WTF is up with nested attributes B.S.?

@@ -13,9 +13,13 @@ MyChi::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about' 
   match '/help',    :to => 'pages#help'
-            
-  root :to => "pages#home"
-  match ':controller(/:action(/:id(.:format)))'
+  #match '/home',    :to => 'pages#splash'  
+
+  match ':controller(/:action(/:id(.:format)))'            
+  #root :to => "pages#home"
+  root :to => "pages#splash"
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

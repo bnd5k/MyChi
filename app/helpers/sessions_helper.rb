@@ -47,6 +47,7 @@ module SessionsHelper
     def remember_token
       cookies.signed[:remember_token] || [nil, nil]
     end  
+
      def store_location
       session[:return_to] = request.fullpath
     end

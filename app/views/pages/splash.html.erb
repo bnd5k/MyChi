@@ -1,0 +1,34 @@
+<center>
+    <h1>Your City Rocks! </h1>
+    <h1>Do You Rock Your City? </h1>
+</center>
+
+  <p>      
+
+  Get ready for the summer's funnest app!  MyCityRocks allows you to get the most of the city you live in by 
+  motivating you to do the fun, funky, and fantastic things that make Chicago a truly unique place to live.
+  </p>
+
+  <p>
+  Compete against your friends to see who knows the city best.  New to Chicago?  No worries!  MyCityRocks will put you in contact with other recent arrivals so that you 
+  can explore the city together.  Before long, you'll know Chicago better than most of the natives! 
+    </p>
+</br>
+<center>  
+<p> 
+<h4>  Interested?  
+Terrific!</br>
+</h4> 
+
+  MyChi will go live in May.  Please submit your email address and we will notify you once we launch.</p>
+
+
+<%= form_for Invitation.new do |f| %>
+  <p>
+    <%= f.label :recipient_email, "Your Email:" %>
+    <%= f.text_field :recipient_email %>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>
+
+</center>

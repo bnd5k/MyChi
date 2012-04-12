@@ -16,4 +16,8 @@ class PagesController < ApplicationController
     @title = "Help"
   end
   
+  def splash
+    @title = "My City Rocks Me!"
+  end
+    
 end
