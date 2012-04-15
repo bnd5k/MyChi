@@ -1,59 +1,66 @@
 module SessionsHelper
-
+  
   def sign_in(user)
     cookies.permanent.signed[:remember_token] = [user.id, user.salt]
+    self.current_user = user
+  end
+  
+  def current_user=(user)
     @current_user = user
   end
-
+  
   def current_user
     @current_user ||= user_from_remember_token
   end
   
   def signed_in?
     current_user.present?
+    p "user signed_in? method called" 
+    p current_user
   end
-  
+ 
   def sign_out
     cookies.delete(:remember_token)
-    @current_user = nil
+    self.current_user = nil
+    p "user has signed out" #Method does NOT get called
   end
-  
-  def deny_access
-    redirect_to signin_path, :notice => "Please sign in to access this page."
-  end
+
+
 
   def current_user?(user)
     user == current_user
+  end
+  
+  def authenticate
+    deny_access unless signed_in?
   end
 
   def deny_access
     store_location
     redirect_to signin_path, :notice => "Please sign in to access this page."
   end
-
+  
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     clear_return_to
   end
-
-      
+  
   private
 
     def user_from_remember_token
-      p "Looking user up from the cookie"
+       p "Looking user up from the cookie"
       User.authenticate_with_salt(*remember_token)
     end
-
+    
     def remember_token
       cookies.signed[:remember_token] || [nil, nil]
-    end  
+    end
 
-     def store_location
+    def store_location
       session[:return_to] = request.fullpath
     end
 
     def clear_return_to
       session[:return_to] = nil
     end
-    
 end

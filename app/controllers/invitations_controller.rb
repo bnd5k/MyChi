@@ -11,7 +11,7 @@ class InvitationsController < ApplicationController
     if @invitation.save
       if signed_in?
         p "before"
-            p current_user
+          p current_user
         UserMailer.invitation(@invitation).deliver
                 p "after"
 

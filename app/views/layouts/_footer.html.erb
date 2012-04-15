@@ -1,15 +1,10 @@
 <footer>
   <nav class="round">
-          <% if signed_in? %> 
     <ul>
       <li><%= link_to "About", about_path %></li>
 
-      <li><%= link_to "Contact", contact_path %></li>
+      <li><%=  link_to 'Contact Us', 'mailto:MyCityRocksMe@gmail.com' %></li>
     </ul>
-    <% end %>
 
-    <p> Questions? 
-   <%=  link_to 'Contact Us', 'mailto:MyCityRocksMe@gmail.com' %>
-   </p>
   </nav>
 </footer>

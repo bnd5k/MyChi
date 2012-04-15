@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate(params[:session][:email],
+   user = User.authenticate(params[:session][:email],
                              params[:session][:password])
     p user
     if user.nil?
@@ -23,3 +23,5 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 end
+
+

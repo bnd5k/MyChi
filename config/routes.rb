@@ -13,11 +13,11 @@ MyChi::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about' 
   match '/help',    :to => 'pages#help'
-  #match '/home',    :to => 'pages#splash'  
 
   match ':controller(/:action(/:id(.:format)))'            
-  #root :to => "pages#home"
-  root :to => "pages#splash"
+  root :to => "pages#home"
+  
+  #root :to => "pages#splash"
 
 
 
