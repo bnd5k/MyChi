@@ -5,13 +5,22 @@
 
 
   def index
-    @title = "All users"
-    @users = User.paginate(:page => params[:page])
+    if current_user && current_user.admin?
+     @title = "All users"
+     @users = User.paginate(:page => params[:page])
+    else
+      redirect_to root_path
+    end 
   end
 
   def show
     @user = User.find(params[:id])
-    @title = @user.name
+    if current_user.id == @user.id or current_user.admin?
+     @title = @user.name
+    else
+  
+      redirect_to root_path   
+    end
   end
      
   def new
@@ -22,7 +31,7 @@
  
     else
       flash[:error] = "Why sign up again?  You're already in!"
-      redirect_to(root_path) 
+      redirect_to root_path 
     end  
   end
 
