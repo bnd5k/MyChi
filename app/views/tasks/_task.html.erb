@@ -1,5 +1,7 @@
 	<li>
-	  <%= link_to task.name, task %>
+	  <%= link_to task.name , task %>
+   	  <%= task.points %>
+  
 	  <% if current_user && current_user.admin? %>
 	  	| <%= link_to "edit", edit_task_path(task) %>
 	   	| <%= link_to "delete", task_path(task), :method => :delete, :confirm => "You sure?",

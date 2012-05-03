@@ -5,8 +5,9 @@ namespace :db do
     make_users
     make_hunts
     make_tasks
+    make_hunt_tasks
   end
-end
+end   
 
 def make_users
   admin = User.create!(:name => "Example User",
@@ -27,12 +28,23 @@ end
 
 def make_hunts
   99.times do
-      Hunt.create!(:name => Faker::Lorem.words(1))
+    word = Faker::Lorem.words(1)
+    puts word
+    puts Hunt.create!(:name => word).name
+    puts "#########"
   end
 end
 
 def make_tasks
   99.times do
-      Task.create!(:name => Faker::Lorem.words(1), :points => 100)
+    Task.create!(:name => Faker::Lorem.words(1), :points => 65)
+  end
+
+end
+
+def make_hunt_tasks
+  20.times do
+    hunt = Hunt.all.sample
+    HuntTask.create!(:hunt => hunt, :task => Task.all.sample)
   end
 end

@@ -1,13 +1,10 @@
-<<<<<<< HEAD
+
 <%= render 'shared/error_messages', :object => f.object %>
 
 <div class="field">
   <%= f.label :name, "Task" %>  
   <%= f.text_field :name %>
-=======
-
-<div class="field">
-  <%= t.label :name, "Task" %>
-  <%= t.text_field :name %>
->>>>>>> 02795a9799047990236848b6d3e3efbfeeb1b01b
+  <%= f.label :points, "Points" %>  
+  <%= f.select :points , [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,80,85,90,95,100]  %>
+  
 </div>

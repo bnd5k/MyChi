@@ -8,7 +8,8 @@
       </h1>
 		<ul>		
 		  <% @tasks.each do |task| %>
-		 	 <%= render task  %>
+		 	 <%= task.name  %>
+		 	 <%= task.points %>
 		  <% end %>
 		</ul>
     </td>

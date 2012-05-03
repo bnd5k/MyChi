@@ -15,7 +15,7 @@
 
   def show
     @user = User.find(params[:id])
-    if current_user.id == @user.id or current_user.admin?
+    if current_user.id == @user.id or current_user.admin? 
      @title = @user.name
     else
   

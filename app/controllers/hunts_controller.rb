@@ -1,9 +1,10 @@
 class HuntsController < ApplicationController
 
   def index
-    p current_user
-     @title = "All Hunts"
-     @hunts = Hunt.paginate(:page => params[:page])
+    @title = "All Hunts"
+    @hunts = Hunt.paginate(:page => params[:page])
+
+#    render :json => @hunts
   end
 
   def show
@@ -21,7 +22,7 @@ class HuntsController < ApplicationController
       3.times { @hunt.tasks.build }
     end
   end
-  
+
 
   def create
     @hunt = Hunt.new(params[:hunt])
@@ -36,7 +37,7 @@ class HuntsController < ApplicationController
 
   def edit
     if current_user?(nil) then
-       redirect_to hunts_path 
+      redirect_to hunts_path 
     else
       if current_user.admin? then
         @hunt = Hunt.find(params[:id])
@@ -57,12 +58,12 @@ class HuntsController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     Hunt.find(params[:id]).destroy
     flash[:success] = "Hunt destroyed."
     redirect_to hunts_path
   end
-  
+
 end
 

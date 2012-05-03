@@ -9,7 +9,6 @@
 #*.rbc
 #*.sassc
 .sass-cache
-#capybara-*.html
 .rspec
 /.bundle
 #/vendor/bundle
@@ -20,8 +19,4 @@
 /coverage/
 /spec/tmp/*
 **.orig
-#rerun.txt
-#pickle-email-*.html
-
-# I added this one.  Because fuck .DS_Store.
 .DS_Store

@@ -11,14 +11,13 @@ class InvitationsController < ApplicationController
     if @invitation.save
       if signed_in?
         p "before"
-          p current_user
+        p current_user
         UserMailer.invitation(@invitation).deliver
-                p "after"
-
-            p current_user
+        p "after"
+        p current_user
 
         flash[:notice] = "Thank you, invitation sent."
-            p current_user
+        p current_user
             
         redirect_to hunts_path      
       else
