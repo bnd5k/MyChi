@@ -1,14 +1,24 @@
-
 <div class="field">
   <%= f.label :name, "Hunt Name" %> 
   <%= f.text_field :name %> 	
 
-  <ul>
-    <%= f.label :name, "Tasks:" %>  
-    <%= f.fields_for :tasks do |ff| %>
-      <li>   
-        <%= ff.text_field :name %>
-      </li>
-    <% end %>	
-  </ul>
-</div>
+  <table>
+    <tr>
+      <td class="main">
+        <tr>
+          <th> Tasks </th>
+          <th> Points </th>
+          <th> Locations </th>
+          <ul>
+            <%= f.fields_for :tasks do |ff| %>
+              <tr>
+                <td> <%= ff.text_field :name %> </td> 
+                <td>  <%= ff.text_field :points %> </td> 
+                <td>  <%= ff.text_field :location  %></td> 
+              </tr>
+            <% end %>	
+          </ul>
+        <tr>
+        </td>
+        </table>
+      </div>
