@@ -2,11 +2,37 @@
 
 <%= will_paginate %>
 
-<ul>
-  <% @tasks.each do |task| %>
- 	 <%= render task  %>
-  <% end %>
-</ul>
-<%= will_paginate %>
+<table>
+  <tr>
+    <td class="main">
+      <tr>
+        <th> Task </th>
+        <th> Points </th>
+        <th> Location </th>
+        <% if current_user && current_user.admin? %> 
+          <th> Actions </th>
+        <% end %>
+      </tr>
+      <ul>		
+        <% @tasks.each do |task| %>
+          <tr> 
+            <td> <%= link_to task.name, task %> </td>
+            <td> <%= task.points %></td>
+            <td> <%= task.location %></td> 
+            <% if current_user && current_user.admin? %> 
+              <td> <%= link_to "edit", edit_task_path(task) %> </td> 
+              <td> <%= link_to "delete", task_path(task), :method => :delete, :confirm => "You sure?",
+                :title => "Delete #{task.name}" %></td> 
 
-<%= link_to( "Create New Task", '/tasks/new') %>
+            <% end %>
+          <% end %>
+        </tr> 
+      </ul>
+    </td>
+  </tr>
+</table>
+
+  <%= will_paginate %>
+  <center>
+  <%= link_to( "Add a Task", '/tasks/new') %>
+</center>
