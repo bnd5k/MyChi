@@ -1,14 +1,19 @@
-<h1>Show Task</h1>
-
 <table>
   <tr>
     <td class="main">
-      <h1>
-        <%= @task.name %>
-      </h1>
-
-
+      <tr>
+        <th> Task </th>
+        <th> Points </th>
+        <th> Location </th>
+      </tr>
+      <ul>		
+          <tr> 
+            <td> <%= @task.name %> </td>
+            <td> <%= @task.points %></td>
+            <td> <%= @task.location %></td> 
+          </tr> 
+          
+      </ul>
     </td>
-
   </tr>
 </table>

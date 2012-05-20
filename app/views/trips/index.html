@@ -1,0 +1,10 @@
+<h1>All Scavenger Hunts</h1>
+
+<%= will_paginate %>
+
+<ul>
+  <% @trips.each do |trip| %>
+  <li> <%= link_to trip.name, trip %> </li>>
+  <% end %>
+</ul>
+<%= will_paginate %>

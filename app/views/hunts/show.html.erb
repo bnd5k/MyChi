@@ -1,17 +1,23 @@
-<h1>Show Hunt</h1>
-
 <table>
   <tr>
     <td class="main">
       <h1>
         <%= @hunt.name %>
       </h1>
-		<ul>		
-		  <% @tasks.each do |task| %>
-		 	 <%= task.name  %>
-		 	 <%= task.points %>
-		  <% end %>
-		</ul>
+      <tr>
+        <th> Task </th>
+        <th> Points </th>
+        <th> Location </th>
+      </tr>
+      <ul>		
+        <% @tasks.each do |task| %>
+          <tr> 
+            <td> <%= task.name %> </td>
+            <td> <%= task.points %></td>
+            <td> <%= task.location %></td> 
+          </tr> 
+        <% end %>
+      </ul>
     </td>
   </tr>
 </table>
