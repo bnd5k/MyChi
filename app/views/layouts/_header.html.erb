@@ -2,7 +2,6 @@
 <%= link_to logo, root_path %>
 <nav class="round">
 
-<<<<<<< HEAD
 <ul>
   <li><%= link_to "Home", root_path %></li>
   <li><%= link_to "Hunts", hunts_path %></li>
@@ -12,20 +11,7 @@
     <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
   <% else %>
     <li><%= link_to "Sign in", signin_path %></li>
-=======
-  <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Hunts", hunts_path %></li>
-     <% if signed_in? %> 
-	      <li><%= link_to "Profile", current_user %></li>
-	      <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-     <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
-
-      <% else %>
-	           <li><%= link_to "Sign in", signin_path %></li>
->>>>>>> add-bootstrap
-    <li><%= link_to "Help", help_path %></li>
   <% end %>
-</ul>
-</nav>
-</header>
+  </ul>
+  </nav>
+  </header>
