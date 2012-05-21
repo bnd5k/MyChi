@@ -11,14 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120519130424) do
-
-  create_table "completed_tasks", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "task_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120519175031) do
 
   create_table "hunt_tasks", :force => true do |t|
     t.integer  "hunt_id"
@@ -53,6 +46,18 @@ ActiveRecord::Schema.define(:version => 20120519130424) do
     t.datetime "updated_at"
     t.string   "location"
   end
+
+  create_table "trips", :force => true do |t|
+    t.string   "trip_name"
+    t.integer  "user_id"
+    t.integer  "hunt_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "trips", ["hunt_id", "user_id"], :name => "index_trips_on_hunt_id_and_user_id", :unique => true
+  add_index "trips", ["hunt_id"], :name => "index_trips_on_hunt_id"
+  add_index "trips", ["user_id"], :name => "index_trips_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
